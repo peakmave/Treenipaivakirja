@@ -1,6 +1,8 @@
 # Treenipaivakirja
 
-Keskeiset toiminnot
+
+Keskeiset toiminnot:
+
 - Käyttäjän rekisteröityminen ja kirjautuminen
 - Treenien lisääminen, muokkaaminen ja poistaminen
 - Voimaharjoitteluliikkeiden kirjaaminen sarjoineen, toistoineen ja painoineen
