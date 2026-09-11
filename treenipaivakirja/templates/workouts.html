@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Omat treenit</h2>
+
+    <form method="get" class="search">
+        <input type="text" name="q" placeholder="Hae lajilla tai muistiinpanolla..." value="{{ query }}">
+        <button type="submit">Hae</button>
+    </form>
+
+    <p><a href="{{ url_for('new_workout') }}">+ Lisää uusi treeni</a></p>
+
+    {% if workouts|length == 0 %}
+        <p>Ei treenejä vielä.</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>Päivämäärä</th>
+                <th>Laji</th>
+                <th>Kesto (min)</th>
+                <th>Muistiinpanot</th>
+                <th></th>
+            </tr>
+            {% for workout in workouts %}
+            <tr>
+                <td>{{ workout.date }}</td>
+                <td>{{ workout.type }}</td>
+                <td>{{ workout.duration or "-" }}</td>
+                <td>{{ workout.notes or "-" }}</td>
+                <td>
+                    <a href="{{ url_for('edit_workout', workout_id=workout.id) }}">Muokkaa</a>
+                    <form method="post" action="{{ url_for('delete_workout', workout_id=workout.id) }}" style="display:inline">
+                        <button type="submit" onclick="return confirm('Poistetaanko treeni?')">Poista</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

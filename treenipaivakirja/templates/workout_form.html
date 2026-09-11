@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>{% if workout %}Muokkaa treeniä{% else %}Uusi treeni{% endif %}</h2>
+
+    <form method="post">
+        <label>Päivämäärä
+            <input type="date" name="date" value="{{ workout.date if workout else '' }}" required>
+        </label>
+        <label>Laji
+            <input type="text" name="type" value="{{ workout.type if workout else '' }}" placeholder="esim. voimaharjoittelu, juoksu" required>
+        </label>
+        <label>Kesto (min)
+            <input type="number" name="duration" value="{{ workout.duration if workout else '' }}">
+        </label>
+        <label>Muistiinpanot
+            <textarea name="notes">{{ workout.notes if workout else '' }}</textarea>
+        </label>
+        <button type="submit">Tallenna</button>
+    </form>
+{% endblock %}
