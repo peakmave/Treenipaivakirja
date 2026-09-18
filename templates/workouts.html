@@ -7,7 +7,7 @@
         <button type="submit">Hae</button>
     </form>
 
-    <p><a href="{{ url_for('new_workout') }}">+ Lisää uusi treeni</a></p>
+    <p><a href="{{ url_for('workouts.new_workout') }}">+ Lisää uusi treeni</a></p>
 
     {% if workouts|length == 0 %}
         <p>Ei treenejä vielä.</p>
@@ -27,8 +27,8 @@
                 <td>{{ workout.duration or "-" }}</td>
                 <td>{{ workout.notes or "-" }}</td>
                 <td>
-                    <a href="{{ url_for('edit_workout', workout_id=workout.id) }}">Muokkaa</a>
-                    <form method="post" action="{{ url_for('delete_workout', workout_id=workout.id) }}" style="display:inline">
+                    <a href="{{ url_for('workouts.edit_workout', workout_id=workout.id) }}">Muokkaa</a>
+                    <form method="post" action="{{ url_for('workouts.delete_workout', workout_id=workout.id) }}" style="display:inline">
                         <button type="submit" onclick="return confirm('Poistetaanko treeni?')">Poista</button>
                     </form>
                 </td>
