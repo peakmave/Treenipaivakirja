@@ -1,3 +1,5 @@
+from functools import wraps
+
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 
 from db import get_db
@@ -7,6 +9,7 @@ workouts = Blueprint("workouts", __name__)
 
 
 def login_required(view):
+    @wraps(view)
     def wrapped(*args, **kwargs):
         if "user_id" not in session:
             return redirect(url_for("users.login"))
