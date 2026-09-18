@@ -2,7 +2,9 @@
 
 Treenipäiväkirja on web-sovellus, jonka avulla käyttäjä voi kirjata omat treeninsä ylös ja seurata niitä ajan mittaan.
 
-Käyttäjä voi luoda tunnuksen ja kirjautua sovellukseen omilla tunnuksillaan. Kirjautunut käyttäjä voi lisätä uusia treenejä, joihin merkitään päivämäärä, laji (esim. voimaharjoittelu, juoksu, jooga), kesto minuutteina sekä vapaamuotoiset muistiinpanot. Käyttäjä näkee kaikki omat treeninsä listana, ja voi muokata tai poistaa niitä. Treenejä voi myös hakea hakusanalla, joka etsii osumia sekä lajin että muistiinpanojen tekstistä.
+Käyttäjä voi luoda tunnuksen ja kirjautua sovellukseen omilla tunnuksillaan.
+Kirjautunut käyttäjä voi lisätä uusia treenejä, joihin merkitään päivämäärä, laji (esim. voimaharjoittelu, juoksu, jooga), kesto minuutteina sekä vapaamuotoiset muistiinpanot.
+Käyttäjä näkee kaikki omat treeninsä listana, ja voi muokata tai poistaa niitä. Treenejä voi myös hakea hakusanalla, joka etsii osumia sekä lajin että muistiinpanojen tekstistä.
 
 ## Keskeiset toiminnot
 - Käyttäjän rekisteröityminen ja kirjautuminen
