@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Luo tunnus</h2>
+    <form method="post">
+        <label>Käyttäjänimi
+            <input type="text" name="username" required>
+        </label>
+        <label>Salasana
+            <input type="password" name="password" required>
+        </label>
+        <label>Salasana uudelleen
+            <input type="password" name="password2" required>
+        </label>
+        <button type="submit">Luo tunnus</button>
+    </form>
+{% endblock %}
