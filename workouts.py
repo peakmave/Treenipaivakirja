@@ -15,3 +15,13 @@ def get_workout(workout_id):
     sql = "SELECT * FROM workouts WHERE id = ?"
     result = db.query(sql, [workout_id])
     return result[0] if result else None
+
+
+def update_workout(workout_id, date, workout_type, duration, notes):
+    sql = "UPDATE workouts SET date = ?, type = ?, duration = ?, notes = ? WHERE id = ?"
+    db.execute(sql, [date, workout_type, duration, notes, workout_id])
+
+
+def remove_workout(workout_id):
+    sql = "DELETE FROM workouts WHERE id = ?"
+    db.execute(sql, [workout_id])

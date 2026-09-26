@@ -104,5 +104,46 @@ def new_workout():
     return redirect("/workouts")
 
 
+
+@app.route("/workouts/<int:workout_id>/edit", methods=["GET", "POST"])
+def edit_workout(workout_id):
+    require_login()
+    workout = workouts.get_workout(workout_id)
+
+    if not workout:
+        abort(404)
+    if workout["user_id"] != session["user_id"]:
+        abort(403)
+
+    if request.method == "GET":
+        return render_template("workout_form.html", workout=workout)
+
+    date = request.form["date"]
+    workout_type = request.form["type"].strip()
+    duration = request.form["duration"]
+    notes = request.form.get("notes", "").strip()
+
+    if not date or not workout_type:
+        flash("Päivämäärä ja laji ovat pakollisia.")
+        return render_template("workout_form.html", workout=workout)
+
+    workouts.update_workout(workout_id, date, workout_type, duration or None, notes)
+    return redirect("/workouts")
+
+
+@app.route("/workouts/<int:workout_id>/delete", methods=["POST"])
+def delete_workout(workout_id):
+    require_login()
+    workout = workouts.get_workout(workout_id)
+
+    if not workout:
+        abort(404)
+    if workout["user_id"] != session["user_id"]:
+        abort(403)
+
+    workouts.remove_workout(workout_id)
+    return redirect("/workouts")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
