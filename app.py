@@ -1,11 +1,17 @@
 import sqlite3
 
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, abort
 
 import users
+import workouts
 
 app = Flask(__name__)
 app.secret_key = "dev-secret-key-vaihda-tuotannossa"
+
+
+def require_login():
+    if "user_id" not in session:
+        abort(403)
 
 
 @app.route("/")
@@ -69,6 +75,33 @@ def login():
 def logout():
     session.clear()
     return redirect("/")
+
+
+@app.route("/workouts")
+def show_workouts():
+    require_login()
+    rows = workouts.get_workouts(session["user_id"])
+    return render_template("workouts.html", workouts=rows, query="")
+
+
+@app.route("/workouts/new", methods=["GET", "POST"])
+def new_workout():
+    require_login()
+
+    if request.method == "GET":
+        return render_template("workout_form.html", workout=None)
+
+    date = request.form["date"]
+    workout_type = request.form["type"].strip()
+    duration = request.form["duration"]
+    notes = request.form.get("notes", "").strip()
+
+    if not date or not workout_type:
+        flash("Päivämäärä ja laji ovat pakollisia.")
+        return render_template("workout_form.html", workout=None)
+
+    workouts.add_workout(session["user_id"], date, workout_type, duration or None, notes)
+    return redirect("/workouts")
 
 
 if __name__ == "__main__":
