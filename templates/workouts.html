@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
     <h2>Omat treenit</h2>
+    <form method="get" class="search">
+        <input type="text" name="q" placeholder="Hae lajilla tai muistiinpanolla..." value="{{ query }}">
+        <button type="submit">Hae</button>
+    </form>
     <p><a href="{{ url_for('new_workout') }}">+ Lisää uusi treeni</a></p>
     {% if workouts|length == 0 %}
         <p>Ei treenejä vielä.</p>

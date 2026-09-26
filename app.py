@@ -80,8 +80,14 @@ def logout():
 @app.route("/workouts")
 def show_workouts():
     require_login()
-    rows = workouts.get_workouts(session["user_id"])
-    return render_template("workouts.html", workouts=rows, query="")
+    search_word = request.args.get("q", "").strip()
+
+    if search_word:
+        rows = workouts.find_workouts(session["user_id"], search_word)
+    else:
+        rows = workouts.get_workouts(session["user_id"])
+
+    return render_template("workouts.html", workouts=rows, query=search_word)
 
 
 @app.route("/workouts/new", methods=["GET", "POST"])

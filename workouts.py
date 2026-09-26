@@ -25,3 +25,9 @@ def update_workout(workout_id, date, workout_type, duration, notes):
 def remove_workout(workout_id):
     sql = "DELETE FROM workouts WHERE id = ?"
     db.execute(sql, [workout_id])
+
+
+def find_workouts(user_id, search_word):
+    sql = "SELECT * FROM workouts WHERE user_id = ? AND (type LIKE ? OR notes LIKE ?) ORDER BY date DESC"
+    like = "%" + search_word + "%"
+    return db.query(sql, [user_id, like, like])
