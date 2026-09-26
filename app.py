@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 
 from flask import Flask, render_template, request, redirect, session, flash, abort
 
@@ -12,6 +13,14 @@ app.secret_key = "dev-secret-key-vaihda-tuotannossa"
 def require_login():
     if "user_id" not in session:
         abort(403)
+
+
+def valid_date(date):
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
 
 
 @app.route("/")
@@ -105,6 +114,18 @@ def new_workout():
     if not date or not workout_type:
         flash("Päivämäärä ja laji ovat pakollisia.")
         return render_template("workout_form.html", workout=None)
+    if not valid_date(date):
+        flash("Päivämäärän pitää olla muotoa VVVV-KK-PP.")
+        return render_template("workout_form.html", workout=None)
+    if len(workout_type) > 50:
+        flash("Lajin nimi on liian pitkä.")
+        return render_template("workout_form.html", workout=None)
+    if duration and (not duration.isdigit() or int(duration) > 1000):
+        flash("Kesto pitää olla kokonaisluku 0-1000 minuuttia.")
+        return render_template("workout_form.html", workout=None)
+    if len(notes) > 1000:
+        flash("Muistiinpanot ovat liian pitkät.")
+        return render_template("workout_form.html", workout=None)
 
     workouts.add_workout(session["user_id"], date, workout_type, duration or None, notes)
     return redirect("/workouts")
@@ -131,6 +152,18 @@ def edit_workout(workout_id):
 
     if not date or not workout_type:
         flash("Päivämäärä ja laji ovat pakollisia.")
+        return render_template("workout_form.html", workout=workout)
+    if not valid_date(date):
+        flash("Päivämäärän pitää olla muotoa VVVV-KK-PP.")
+        return render_template("workout_form.html", workout=workout)
+    if len(workout_type) > 50:
+        flash("Lajin nimi on liian pitkä.")
+        return render_template("workout_form.html", workout=workout)
+    if duration and (not duration.isdigit() or int(duration) > 1000):
+        flash("Kesto pitää olla kokonaisluku 0-1000 minuuttia.")
+        return render_template("workout_form.html", workout=workout)
+    if len(notes) > 1000:
+        flash("Muistiinpanot ovat liian pitkät.")
         return render_template("workout_form.html", workout=workout)
 
     workouts.update_workout(workout_id, date, workout_type, duration or None, notes)
