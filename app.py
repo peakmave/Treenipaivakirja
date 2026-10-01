@@ -250,3 +250,10 @@ def delete_workout(workout_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/users")
+def show_users():
+    require_login()
+    all_users = users.get_all_users()
+    return render_template("users.html", users=all_users)
+
