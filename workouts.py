@@ -53,3 +53,8 @@ def set_workout_categories(workout_id, category_ids):
     sql = "INSERT INTO workout_categories (workout_id, category_id) VALUES (?, ?)"
     for category_id in category_ids:
         db.execute(sql, [workout_id, category_id])
+
+
+def get_user_stats(user_id):
+    sql = "SELECT COUNT(*) count, COALESCE(SUM(duration), 0) total_duration FROM workouts WHERE user_id = ?"
+    return db.query(sql, [user_id])[0]

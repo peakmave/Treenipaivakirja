@@ -257,3 +257,14 @@ def show_users():
     all_users = users.get_all_users()
     return render_template("users.html", users=all_users)
 
+@app.route("/users/<int:user_id>")
+def show_user(user_id):
+    require_login()
+    user = users.get_user(user_id)
+    if not user:
+        abort(404)
+
+    stats = workouts.get_user_stats(user_id)
+    user_workouts = workouts.get_workouts(user_id)
+    return render_template("user.html", profile_user=user, stats=stats, workouts=user_workouts)
+

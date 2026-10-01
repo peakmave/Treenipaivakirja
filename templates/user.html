@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>{{ profile_user.username }}</h2>
+    <p>Treenejä yhteensä: {{ stats.count }}</p>
+    <p>Minuutteja yhteensä: {{ stats.total_duration }}</p>
+
+    <h3>Treenit</h3>
+    {% if workouts|length == 0 %}
+        <p>Ei vielä treenejä.</p>
+    {% else %}
+        <ul>
+            {% for workout in workouts %}
+                <li>
+                    <a href="{{ url_for('show_workout', workout_id=workout.id) }}">
+                        {{ workout.date }} - {{ workout.type }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
