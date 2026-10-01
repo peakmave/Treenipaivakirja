@@ -124,6 +124,7 @@ def new_workout():
     if request.method == "GET":
         return render_template("workout_form.html", workout=None)
 
+    check_csrf()
     date = request.form["date"]
     workout_type = request.form["type"].strip()
     duration = request.form["duration"]
@@ -163,6 +164,7 @@ def edit_workout(workout_id):
     if request.method == "GET":
         return render_template("workout_form.html", workout=workout)
 
+    check_csrf()
     date = request.form["date"]
     workout_type = request.form["type"].strip()
     duration = request.form["duration"]
@@ -191,6 +193,7 @@ def edit_workout(workout_id):
 @app.route("/workouts/<int:workout_id>/delete", methods=["POST"])
 def delete_workout(workout_id):
     require_login()
+    check_csrf()
     workout = workouts.get_workout(workout_id)
 
     if not workout:
