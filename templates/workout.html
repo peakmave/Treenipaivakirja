@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>{{ workout.type }} - {{ workout.date }}</h2>
+    <p>Kesto: {{ workout.duration or "-" }} min</p>
+    <p>Muistiinpanot: {{ workout.notes or "-" }}</p>
+
+    {% if categories|length > 0 %}
+        <p>Luokat:
+            {% for category in categories %}
+                {{ category.name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% endif %}
+{% endblock %}

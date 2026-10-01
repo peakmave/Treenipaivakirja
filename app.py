@@ -117,6 +117,18 @@ def show_workouts():
     return render_template("workouts.html", workouts=rows, query=search_word)
 
 
+
+@app.route("/workouts/<int:workout_id>")
+def show_workout(workout_id):
+    require_login()
+    workout = workouts.get_workout(workout_id)
+    if not workout:
+        abort(404)
+
+    categories = workouts.get_workout_categories(workout_id)
+    return render_template("workout.html", workout=workout, categories=categories)
+
+
 @app.route("/workouts/new", methods=["GET", "POST"])
 def new_workout():
     require_login()
