@@ -25,3 +25,11 @@ CREATE TABLE workout_categories (
     category_id INTEGER REFERENCES categories,
     PRIMARY KEY (workout_id, category_id)
 );
+
+CREATE TABLE comments (
+    id INTEGER PRIMARY KEY,
+    workout_id INTEGER NOT NULL REFERENCES workouts,
+    user_id INTEGER NOT NULL REFERENCES users,
+    comment TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
