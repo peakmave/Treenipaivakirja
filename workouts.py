@@ -31,3 +31,24 @@ def find_workouts(user_id, search_word):
     sql = "SELECT * FROM workouts WHERE user_id = ? AND (type LIKE ? OR notes LIKE ?) ORDER BY date DESC"
     like = "%" + search_word + "%"
     return db.query(sql, [user_id, like, like])
+
+
+def get_all_categories():
+    sql = "SELECT * FROM categories ORDER BY id"
+    return db.query(sql)
+
+
+def get_workout_categories(workout_id):
+    sql = """SELECT categories.id, categories.name
+             FROM categories, workout_categories
+             WHERE categories.id = workout_categories.category_id
+             AND workout_categories.workout_id = ?"""
+    return db.query(sql, [workout_id])
+
+
+def set_workout_categories(workout_id, category_ids):
+    sql = "DELETE FROM workout_categories WHERE workout_id = ?"
+    db.execute(sql, [workout_id])
+    sql = "INSERT INTO workout_categories (workout_id, category_id) VALUES (?, ?)"
+    for category_id in category_ids:
+        db.execute(sql, [workout_id, category_id])
