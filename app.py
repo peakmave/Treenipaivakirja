@@ -131,6 +131,27 @@ def show_workout(workout_id):
     return render_template("workout.html", workout=workout, categories=categories, comments=workout_comments)
 
 
+@app.route("/workouts/<int:workout_id>/comment", methods=["POST"])
+def add_comment(workout_id):
+    require_login()
+    check_csrf()
+
+    workout = workouts.get_workout(workout_id)
+    if not workout:
+        abort(404)
+
+    comment = request.form["comment"].strip()
+    if not comment:
+        flash("Kommentti ei voi olla tyhjä.")
+        return redirect(f"/workouts/{workout_id}")
+    if len(comment) > 500:
+        flash("Kommentti on liian pitkä.")
+        return redirect(f"/workouts/{workout_id}")
+
+    comments.add_comment(workout_id, session["user_id"], comment)
+    return redirect(f"/workouts/{workout_id}")
+
+
 @app.route("/workouts/new", methods=["GET", "POST"])
 def new_workout():
     require_login()
