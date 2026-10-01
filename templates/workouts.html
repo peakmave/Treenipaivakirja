@@ -19,7 +19,7 @@
             </tr>
             {% for workout in workouts %}
             <tr>
-                <td>{{ workout.date }}</td>
+                <td><a href="{{ url_for('show_workout', workout_id=workout.id) }}">{{ workout.date }}</a></td>
                 <td>{{ workout.type }}</td>
                 <td>{{ workout.duration or "-" }}</td>
                 <td>{{ workout.notes or "-" }}</td>
