@@ -11,6 +11,9 @@ Käyttäjä näkee kaikki omat treeninsä listana, ja voi muokata tai poistaa ni
 - Treenien lisääminen, muokkaaminen ja poistaminen
 - Kaikkien omien treenien näkeminen listana
 - Treenien hakeminen hakusanalla (laji tai muistiinpanot)
+- Käyttäjäsivut, jotka näyttävät käyttäjän tilastot ja hänen lisäämänsä treenit
+- Treenille voi valita yhden tai useamman luokan (esim. voimaharjoittelu, kestävyys)
+- Käyttäjä voi kommentoida toisen käyttäjän treeniä
 
 ## Sovelluksen testaaminen omalla koneella
 
