@@ -15,6 +15,16 @@
         <label>Muistiinpanot
             <textarea name="notes">{{ workout.notes if workout else '' }}</textarea>
         </label>
+        <fieldset>
+            <legend>Luokat</legend>
+            {% for category in all_categories %}
+                <label>
+                    <input type="checkbox" name="categories" value="{{ category.id }}"
+                        {% if category.id|string in selected %}checked{% endif %}>
+                    {{ category.name }}
+                </label>
+            {% endfor %}
+        </fieldset>
         <button type="submit">Tallenna</button>
     </form>
 {% endblock %}
