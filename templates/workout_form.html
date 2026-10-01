@@ -2,6 +2,7 @@
 {% block content %}
     <h2>{% if workout %}Muokkaa treeniä{% else %}Uusi treeni{% endif %}</h2>
     <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <label>Päivämäärä
             <input type="date" name="date" value="{{ workout.date if workout else '' }}" required>
         </label>
