@@ -4,6 +4,7 @@ import db
 def add_workout(user_id, date, workout_type, duration, notes):
     sql = "INSERT INTO workouts (user_id, date, type, duration, notes) VALUES (?, ?, ?, ?, ?)"
     db.execute(sql, [user_id, date, workout_type, duration, notes])
+    return db.last_insert_id()
 
 
 def get_workouts(user_id):
