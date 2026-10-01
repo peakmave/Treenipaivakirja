@@ -24,8 +24,9 @@ def update_workout(workout_id, date, workout_type, duration, notes):
 
 
 def remove_workout(workout_id):
-    sql = "DELETE FROM workouts WHERE id = ?"
-    db.execute(sql, [workout_id])
+    db.execute("DELETE FROM workout_categories WHERE workout_id = ?", [workout_id])
+    db.execute("DELETE FROM comments WHERE workout_id = ?", [workout_id])
+    db.execute("DELETE FROM workouts WHERE id = ?", [workout_id])
 
 
 def find_workouts(user_id, search_word):
