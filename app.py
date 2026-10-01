@@ -1,3 +1,4 @@
+import comments
 import secrets
 import sqlite3
 from datetime import datetime
@@ -126,7 +127,8 @@ def show_workout(workout_id):
         abort(404)
 
     categories = workouts.get_workout_categories(workout_id)
-    return render_template("workout.html", workout=workout, categories=categories)
+    workout_comments = comments.get_comments(workout_id)
+    return render_template("workout.html", workout=workout, categories=categories, comments=workout_comments)
 
 
 @app.route("/workouts/new", methods=["GET", "POST"])

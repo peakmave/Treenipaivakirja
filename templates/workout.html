@@ -11,4 +11,15 @@
             {% endfor %}
         </p>
     {% endif %}
+
+    <h3>Kommentit</h3>
+    {% if comments|length == 0 %}
+        <p>Ei kommentteja vielä.</p>
+    {% else %}
+        <ul>
+            {% for comment in comments %}
+                <li><strong>{{ comment.username }}:</strong> {{ comment.comment }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}
