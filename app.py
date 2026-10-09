@@ -5,11 +5,12 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, session, flash, abort
 
 import comments
+import config
 import users
 import workouts
 
 app = Flask(__name__)
-app.secret_key = "dev-secret-key-vaihda-tuotannossa"
+app.secret_key = config.secret_key
 
 
 def require_login():
