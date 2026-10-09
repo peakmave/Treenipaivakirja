@@ -48,3 +48,7 @@ Vaatimukset: Python 3 ja `pip`.
 7. Luo sovellukseen tunnus "Luo tunnus" -linkistä, kirjaudu sisään ja kokeile treenien lisäystä, muokkausta, poistoa ja hakua.
 
 **Huom:** Tiedosto `database.db` ei kuulu repositorioon (ks. `.gitignore`). Testaajan tulee luoda se itse yllä olevan ohjeen mukaisesti `schema.sql`-tiedoston pohjalta.
+
+## Muiden käyttäjien treenit
+
+Navigaation Käyttäjät-linkistä pääsee käyttäjälistaan ja sieltä jokaisen käyttäjän omalle sivulle, jossa näkyvät tilastot ja treenit. Treenin sivulla voi lukea ja kirjoittaa kommentteja.
