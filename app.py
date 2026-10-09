@@ -40,6 +40,19 @@ def valid_date(date):
         return False
 
 
+def validate_registration(username, password, password2):
+    error = None
+    if not username or not password:
+        error = "Täytä kaikki kentät."
+    elif len(username) > 50:
+        error = "Käyttäjänimi on liian pitkä."
+    elif len(password) < 4:
+        error = "Salasanan pitää olla vähintään 4 merkkiä."
+    elif password != password2:
+        error = "Salasanat eivät täsmää."
+    return error
+
+
 def validate_workout(date, workout_type, duration, notes, category_ids):
     valid_ids = [str(c["id"]) for c in workouts.get_all_categories()]
     error = None
