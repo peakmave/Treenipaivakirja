@@ -18,9 +18,13 @@ Jokaisella käyttäjällä on oma käyttäjäsivunsa, jossa näkyvät hänen til
 
 ## Sovelluksen testaaminen omalla koneella
 
-Vaatimukset: Python 3 ja `pip`.
+Vaatimukset: Python 3, `pip` ja `sqlite3`-komentorivityökalu. Debian- ja Ubuntu-järjestelmissä tarvitaan lisäksi paketti `python3-venv`.
 
-1. Kloonaa repositorio ja siirry sen juurikansioon.
+1. Kloonaa repositorio ja siirry sen juurikansioon:
+   ```
+   git clone https://github.com/peakmave/Treenipaivakirja.git
+   cd Treenipaivakirja
+   ```
 
 2. Luo ja aktivoi virtuaaliympäristö:
    ```
