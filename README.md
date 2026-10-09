@@ -58,7 +58,3 @@ Vaatimukset: Python 3, `pip` ja `sqlite3`-komentorivityökalu. Debian- ja Ubuntu
    - Kommentointia varten tarvitaan toinen käyttäjä: luo toinen tunnus esimerkiksi incognito-ikkunassa. Lisää ensimmäisellä tunnuksella treeni, kirjaudu toisella tunnuksella, avaa navigaation Käyttäjät-linkistä ensimmäisen käyttäjän sivu (siellä näkyvät tilastot ja treenit), avaa treeni ja kirjoita kommentti.
 
 **Huom:** Tiedosto `database.db` ei kuulu repositorioon (ks. `.gitignore`). Testaajan tulee luoda se itse yllä olevan ohjeen mukaisesti `schema.sql`-tiedoston pohjalta.
-
-## Muiden käyttäjien treenit
-
-Navigaation Käyttäjät-linkistä pääsee käyttäjälistaan ja sieltä jokaisen käyttäjän omalle sivulle, jossa näkyvät tilastot ja treenit. Treenin sivulla voi lukea ja kirjoittaa kommentteja.
