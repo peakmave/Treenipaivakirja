@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Poista treeni</h2>
+    <p>Haluatko varmasti poistaa treenin {{ workout.type }} ({{ workout.date }})?</p>
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" name="remove" value="1">Poista</button>
+        <a href="{{ url_for('show_workouts') }}">Peruuta</a>
+    </form>
+{% endblock %}

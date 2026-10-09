@@ -244,10 +244,9 @@ def edit_workout(workout_id):
     return redirect("/workouts")
 
 
-@app.route("/workouts/<int:workout_id>/delete", methods=["POST"])
+@app.route("/workouts/<int:workout_id>/delete", methods=["GET", "POST"])
 def delete_workout(workout_id):
     require_login()
-    check_csrf()
     workout = workouts.get_workout(workout_id)
 
     if not workout:
@@ -255,7 +254,12 @@ def delete_workout(workout_id):
     if workout["user_id"] != session["user_id"]:
         abort(403)
 
-    workouts.remove_workout(workout_id)
+    if request.method == "GET":
+        return render_template("delete_workout.html", workout=workout)
+
+    check_csrf()
+    if "remove" in request.form:
+        workouts.remove_workout(workout_id)
     return redirect("/workouts")
 
 
