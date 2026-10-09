@@ -97,17 +97,9 @@ def register():
     password = request.form["password"]
     password2 = request.form["password2"]
 
-    if not username or not password:
-        flash("Täytä kaikki kentät.")
-        return redirect("/register")
-    if len(username) > 50:
-        flash("Käyttäjänimi on liian pitkä.")
-        return redirect("/register")
-    if len(password) < 4:
-        flash("Salasanan pitää olla vähintään 4 merkkiä.")
-        return redirect("/register")
-    if password != password2:
-        flash("Salasanat eivät täsmää.")
+    error = validate_registration(username, password, password2)
+    if error:
+        flash(error)
         return redirect("/register")
 
     try:
