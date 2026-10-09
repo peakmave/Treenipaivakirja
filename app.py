@@ -145,7 +145,6 @@ def show_workouts():
     return render_template("workouts.html", workouts=rows, query=search_word)
 
 
-
 @app.route("/workouts/<int:workout_id>")
 def show_workout(workout_id):
     require_login()
@@ -160,7 +159,6 @@ def show_workout(workout_id):
         categories=workouts.get_workout_categories(workout_id),
         comments=comments.get_comments(workout_id),
     )
-
 
 
 @app.route("/workouts/<int:workout_id>/comment", methods=["POST"])
@@ -210,8 +208,6 @@ def new_workout():
     return redirect("/workouts")
 
 
-
-
 @app.route("/workouts/<int:workout_id>/edit", methods=["GET", "POST"])
 def edit_workout(workout_id):
     require_login()
@@ -241,7 +237,6 @@ def edit_workout(workout_id):
     workouts.update_workout(workout_id, date, workout_type, duration or None, notes)
     workouts.set_workout_categories(workout_id, category_ids)
     return redirect("/workouts")
-
 
 
 @app.route("/workouts/<int:workout_id>/delete", methods=["POST"])
@@ -278,4 +273,3 @@ def show_user(user_id):
     stats = workouts.get_user_stats(user_id)
     user_workouts = workouts.get_workouts(user_id)
     return render_template("user.html", profile_user=user, stats=stats, workouts=user_workouts)
-
