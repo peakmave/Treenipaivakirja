@@ -40,6 +40,33 @@ def valid_date(date):
         return False
 
 
+def validate_workout(date, workout_type, duration, notes, category_ids):
+    valid_ids = [str(c["id"]) for c in workouts.get_all_categories()]
+    if not date or not workout_type:
+        return "Päivämäärä ja laji ovat pakollisia."
+    if not valid_date(date):
+        return "Päivämäärän pitää olla muotoa VVVV-KK-PP."
+    if len(workout_type) > 50:
+        return "Lajin nimi on liian pitkä."
+    if duration and (not duration.isdigit() or int(duration) > 1000):
+        return "Kesto pitää olla kokonaisluku 0-1000 minuuttia."
+    if len(notes) > 1000:
+        return "Muistiinpanot ovat liian pitkät."
+    for category_id in category_ids:
+        if category_id not in valid_ids:
+            return "Virheellinen luokka."
+    return None
+
+
+def render_workout_form(workout, selected):
+    return render_template(
+        "workout_form.html",
+        workout=workout,
+        all_categories=workouts.get_all_categories(),
+        selected=selected,
+    )
+
+
 @app.route("/")
 def index():
     if "user_id" in session:
