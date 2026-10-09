@@ -2,7 +2,8 @@ import db
 
 
 def add_workout(user_id, date, workout_type, duration, notes):
-    sql = "INSERT INTO workouts (user_id, date, type, duration, notes) VALUES (?, ?, ?, ?, ?)"
+    sql = """INSERT INTO workouts (user_id, date, type, duration, notes)
+             VALUES (?, ?, ?, ?, ?)"""
     db.execute(sql, [user_id, date, workout_type, duration, notes])
     return db.last_insert_id()
 
@@ -30,7 +31,9 @@ def remove_workout(workout_id):
 
 
 def find_workouts(user_id, search_word):
-    sql = "SELECT * FROM workouts WHERE user_id = ? AND (type LIKE ? OR notes LIKE ?) ORDER BY date DESC"
+    sql = """SELECT * FROM workouts
+             WHERE user_id = ? AND (type LIKE ? OR notes LIKE ?)
+             ORDER BY date DESC"""
     like = "%" + search_word + "%"
     return db.query(sql, [user_id, like, like])
 
@@ -57,5 +60,7 @@ def set_workout_categories(workout_id, category_ids):
 
 
 def get_user_stats(user_id):
-    sql = "SELECT COUNT(*) count, COALESCE(SUM(duration), 0) total_duration FROM workouts WHERE user_id = ?"
+    sql = """SELECT COUNT(*) count, COALESCE(SUM(duration), 0) total_duration
+             FROM workouts
+             WHERE user_id = ?"""
     return db.query(sql, [user_id])[0]
