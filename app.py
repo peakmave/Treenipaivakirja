@@ -126,9 +126,14 @@ def show_workout(workout_id):
     if not workout:
         abort(404)
 
-    categories = workouts.get_workout_categories(workout_id)
-    workout_comments = comments.get_comments(workout_id)
-    return render_template("workout.html", workout=workout, categories=categories, comments=workout_comments)
+    return render_template(
+        "workout.html",
+        workout=workout,
+        owner=users.get_user(workout["user_id"]),
+        categories=workouts.get_workout_categories(workout_id),
+        comments=comments.get_comments(workout_id),
+    )
+
 
 
 @app.route("/workouts/<int:workout_id>/comment", methods=["POST"])

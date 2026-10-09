@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <h2>{{ workout.type }} - {{ workout.date }}</h2>
+    <p>Käyttäjä: <a href="{{ url_for('show_user', user_id=owner.id) }}">{{ owner.username }}</a></p>
     <p>Kesto: {{ workout.duration or "-" }} min</p>
     <p>Muistiinpanot: {{ workout.notes or "-" }}</p>
 
