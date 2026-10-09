@@ -73,3 +73,6 @@ form fieldset input[type="checkbox"] {
     width: auto;
     margin: 0;
 }
+td a {
+    margin-right: 0.75rem;
+}
