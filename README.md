@@ -38,23 +38,25 @@ Vaatimukset: Python 3, `pip` ja `sqlite3`-komentorivityökalu. Debian- ja Ubuntu
    pip install flask
    ```
 
-4. Luo tietokanta `schema.sql`-tiedoston perusteella:
+4. Luo tiedosto `config.py`, jossa on sovelluksen salainen avain:
+
+5. Luo tietokanta `schema.sql`-tiedoston perusteella:
    ```
    sqlite3 database.db < schema.sql
    ```
 
-5. Käynnistä sovellus:
+6. Käynnistä sovellus:
    ```
    flask run
    ```
 
-6. Avaa selaimessa osoite [http://127.0.0.1:5000](http://127.0.0.1:5000)
+7. Avaa selaimessa osoite [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-7. Kokeile sovellusta selaimessa:
+8. Kokeile sovellusta selaimessa:
    - Luo tunnus "Luo tunnus" -linkistä ja kirjaudu sisään.
    - Lisää treeni ("Lisää uusi treeni") ja valitse sille yksi tai useampi luokka. Luokat (Voimaharjoittelu, Kestävyys, Liikkuvuus ja Muu) luodaan tietokantaan `schema.sql`-tiedostosta.
    - Kokeile treenin muokkausta, poistoa (poisto kysyy vahvistuksen erillisellä sivulla) ja hakua.
    - Kokeile virheellisiä syötteitä (esim. liian pitkä kesto): lomake näyttää virheilmoituksen ja säilyttää kirjoitetut tiedot.
    - Kommentointia varten tarvitaan toinen käyttäjä: luo toinen tunnus esimerkiksi incognito-ikkunassa. Lisää ensimmäisellä tunnuksella treeni, kirjaudu toisella tunnuksella, avaa navigaation Käyttäjät-linkistä ensimmäisen käyttäjän sivu (siellä näkyvät tilastot ja treenit), avaa treeni ja kirjoita kommentti.
 
-**Huom:** Tiedosto `database.db` ei kuulu repositorioon (ks. `.gitignore`). Testaajan tulee luoda se itse yllä olevan ohjeen mukaisesti `schema.sql`-tiedoston pohjalta.
+**Huom:** Tiedostot `database.db` ja `config.py` eivät kuulu repositorioon (ks. `.gitignore`). Testaajan tulee luoda ne itse yllä olevien ohjeiden mukaisesti.
