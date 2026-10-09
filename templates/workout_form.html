@@ -4,16 +4,16 @@
     <form method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <label>Päivämäärä
-            <input type="date" name="date" value="{{ workout.date if workout else '' }}" required>
+            <input type="date" name="date" value="{{ form.date or '' }}" required>
         </label>
         <label>Laji
-            <input type="text" name="type" value="{{ workout.type if workout else '' }}" placeholder="esim. voimaharjoittelu, juoksu" required>
+            <input type="text" name="type" value="{{ form.type or '' }}" placeholder="esim. voimaharjoittelu, juoksu" required>
         </label>
         <label>Kesto (min)
-            <input type="number" name="duration" value="{{ workout.duration if workout else '' }}">
+            <input type="number" name="duration" value="{{ form.duration or '' }}">
         </label>
         <label>Muistiinpanot
-            <textarea name="notes">{{ workout.notes if workout else '' }}</textarea>
+            <textarea name="notes">{{ form.notes or '' }}</textarea>
         </label>
         <fieldset>
             <legend>Luokat</legend>

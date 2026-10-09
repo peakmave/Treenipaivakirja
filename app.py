@@ -71,10 +71,11 @@ def validate_workout(date, workout_type, duration, notes, category_ids):
     return error
 
 
-def render_workout_form(workout, selected):
+def render_workout_form(workout, form, selected):
     return render_template(
         "workout_form.html",
         workout=workout,
+        form=form,
         all_categories=workouts.get_all_categories(),
         selected=selected,
     )
@@ -192,7 +193,7 @@ def new_workout():
     require_login()
 
     if request.method == "GET":
-        return render_workout_form(None, [])
+        return render_workout_form(None, {}, [])
 
     check_csrf()
     date = request.form["date"]
@@ -204,7 +205,7 @@ def new_workout():
     error = validate_workout(date, workout_type, duration, notes, category_ids)
     if error:
         flash(error)
-        return render_workout_form(None, category_ids)
+        return render_workout_form(None, request.form, category_ids)
 
     workout_id = workouts.add_workout(
         session["user_id"], date, workout_type, duration or None, notes
@@ -225,7 +226,7 @@ def edit_workout(workout_id):
 
     if request.method == "GET":
         current = [str(c["id"]) for c in workouts.get_workout_categories(workout_id)]
-        return render_workout_form(workout, current)
+        return render_workout_form(workout, workout, current)
 
     check_csrf()
     date = request.form["date"]
@@ -237,7 +238,7 @@ def edit_workout(workout_id):
     error = validate_workout(date, workout_type, duration, notes, category_ids)
     if error:
         flash(error)
-        return render_workout_form(workout, category_ids)
+        return render_workout_form(workout, request.form, category_ids)
 
     workouts.update_workout(workout_id, date, workout_type, duration or None, notes)
     workouts.set_workout_categories(workout_id, category_ids)
