@@ -187,10 +187,9 @@ def add_comment(workout_id):
 @app.route("/workouts/new", methods=["GET", "POST"])
 def new_workout():
     require_login()
-    all_categories = workouts.get_all_categories()
 
     if request.method == "GET":
-        return render_template("workout_form.html", workout=None, all_categories=all_categories, selected=[])
+        return render_workout_form(None, [])
 
     check_csrf()
     date = request.form["date"]
@@ -199,25 +198,17 @@ def new_workout():
     notes = request.form.get("notes", "").strip()
     category_ids = request.form.getlist("categories")
 
-    if not date or not workout_type:
-        flash("Päivämäärä ja laji ovat pakollisia.")
-        return render_template("workout_form.html", workout=None, all_categories=all_categories, selected=category_ids)
-    if not valid_date(date):
-        flash("Päivämäärän pitää olla muotoa VVVV-KK-PP.")
-        return render_template("workout_form.html", workout=None, all_categories=all_categories, selected=category_ids)
-    if len(workout_type) > 50:
-        flash("Lajin nimi on liian pitkä.")
-        return render_template("workout_form.html", workout=None, all_categories=all_categories, selected=category_ids)
-    if duration and (not duration.isdigit() or int(duration) > 1000):
-        flash("Kesto pitää olla kokonaisluku 0-1000 minuuttia.")
-        return render_template("workout_form.html", workout=None, all_categories=all_categories, selected=category_ids)
-    if len(notes) > 1000:
-        flash("Muistiinpanot ovat liian pitkät.")
-        return render_template("workout_form.html", workout=None, all_categories=all_categories, selected=category_ids)
+    error = validate_workout(date, workout_type, duration, notes, category_ids)
+    if error:
+        flash(error)
+        return render_workout_form(None, category_ids)
 
-    workout_id = workouts.add_workout(session["user_id"], date, workout_type, duration or None, notes)
+    workout_id = workouts.add_workout(
+        session["user_id"], date, workout_type, duration or None, notes
+    )
     workouts.set_workout_categories(workout_id, category_ids)
     return redirect("/workouts")
+
 
 
 
