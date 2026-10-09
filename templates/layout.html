@@ -12,6 +12,7 @@
             {% if session.user_id %}
                 <span>Kirjautuneena: {{ session.username }}</span>
                 <a href="{{ url_for('show_workouts') }}">Treenit</a>
+                <a href="{{ url_for('show_users') }}">Käyttäjät</a>
                 <a href="{{ url_for('logout') }}">Kirjaudu ulos</a>
             {% else %}
                 <a href="{{ url_for('login') }}">Kirjaudu sisään</a>
