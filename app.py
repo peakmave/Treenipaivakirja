@@ -222,11 +222,9 @@ def edit_workout(workout_id):
     if workout["user_id"] != session["user_id"]:
         abort(403)
 
-    all_categories = workouts.get_all_categories()
-
     if request.method == "GET":
         current = [str(c["id"]) for c in workouts.get_workout_categories(workout_id)]
-        return render_template("workout_form.html", workout=workout, all_categories=all_categories, selected=current)
+        return render_workout_form(workout, current)
 
     check_csrf()
     date = request.form["date"]
@@ -235,25 +233,15 @@ def edit_workout(workout_id):
     notes = request.form.get("notes", "").strip()
     category_ids = request.form.getlist("categories")
 
-    if not date or not workout_type:
-        flash("Päivämäärä ja laji ovat pakollisia.")
-        return render_template("workout_form.html", workout=workout, all_categories=all_categories, selected=category_ids)
-    if not valid_date(date):
-        flash("Päivämäärän pitää olla muotoa VVVV-KK-PP.")
-        return render_template("workout_form.html", workout=workout, all_categories=all_categories, selected=category_ids)
-    if len(workout_type) > 50:
-        flash("Lajin nimi on liian pitkä.")
-        return render_template("workout_form.html", workout=workout, all_categories=all_categories, selected=category_ids)
-    if duration and (not duration.isdigit() or int(duration) > 1000):
-        flash("Kesto pitää olla kokonaisluku 0-1000 minuuttia.")
-        return render_template("workout_form.html", workout=workout, all_categories=all_categories, selected=category_ids)
-    if len(notes) > 1000:
-        flash("Muistiinpanot ovat liian pitkät.")
-        return render_template("workout_form.html", workout=workout, all_categories=all_categories, selected=category_ids)
+    error = validate_workout(date, workout_type, duration, notes, category_ids)
+    if error:
+        flash(error)
+        return render_workout_form(workout, category_ids)
 
     workouts.update_workout(workout_id, date, workout_type, duration or None, notes)
     workouts.set_workout_categories(workout_id, category_ids)
     return redirect("/workouts")
+
 
 
 @app.route("/workouts/<int:workout_id>/delete", methods=["POST"])
