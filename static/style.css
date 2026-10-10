@@ -101,3 +101,27 @@ form fieldset input[type="checkbox"] {
 td a {
     margin-right: 0.75rem;
 }
+button {
+    background: #2b6cb0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.45rem 1rem;
+    font: inherit;
+    cursor: pointer;
+}
+button:hover {
+    background: #245a96;
+}
+input, textarea {
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font: inherit;
+}
+input:focus, textarea:focus {
+    outline: 2px solid #90cdf4;
+    border-color: #2b6cb0;
+}
+textarea {
+    min-height: 5rem;
+}
