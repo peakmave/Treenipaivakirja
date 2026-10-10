@@ -6,9 +6,9 @@
     <p>Muistiinpanot: {{ workout.notes or "-" }}</p>
 
     {% if categories|length > 0 %}
-        <p>Luokat:
+        <p>
             {% for category in categories %}
-                {{ category.name }}{% if not loop.last %}, {% endif %}
+                <span class="chip">{{ category.name }}</span>
             {% endfor %}
         </p>
     {% endif %}
