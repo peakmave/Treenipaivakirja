@@ -15,6 +15,7 @@ Jokaisella käyttäjällä on oma käyttäjäsivunsa, jossa näkyvät hänen til
 - Käyttäjäsivut, jotka näyttävät käyttäjän tilastot ja hänen lisäämänsä treenit
 - Treenille voi valita yhden tai useamman luokan (esim. voimaharjoittelu, kestävyys)
 - Käyttäjä voi kommentoida toisen käyttäjän treeniä
+- Etusivu, jolla näkyvät kaikkien käyttäjien viimeisimmät treenit
 
 ## Sovelluksen testaaminen omalla koneella
 
@@ -56,6 +57,7 @@ Vaatimukset: Python 3, `pip` ja `sqlite3`-komentorivityökalu. Debian- ja Ubuntu
    - Luo tunnus "Luo tunnus" -linkistä ja kirjaudu sisään.
    - Lisää treeni ("Lisää uusi treeni") ja valitse sille yksi tai useampi luokka. Luokat (Voimaharjoittelu, Kestävyys, Liikkuvuus ja Muu) luodaan tietokantaan `schema.sql`-tiedostosta.
    - Kokeile treenin muokkausta, poistoa (poisto kysyy vahvistuksen erillisellä sivulla) ja hakua.
+   - Etusivulla näkyvät kaikkien käyttäjien viimeisimmät treenit.
    - Kokeile virheellisiä syötteitä (esim. liian pitkä kesto): lomake näyttää virheilmoituksen ja säilyttää kirjoitetut tiedot.
    - Kommentointia varten tarvitaan toinen käyttäjä: luo toinen tunnus esimerkiksi incognito-ikkunassa. Lisää ensimmäisellä tunnuksella treeni, kirjaudu toisella tunnuksella, avaa navigaation Käyttäjät-linkistä ensimmäisen käyttäjän sivu (siellä näkyvät tilastot ja treenit), avaa treeni ja kirjoita kommentti.
 
