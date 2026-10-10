@@ -233,3 +233,57 @@ button[name="remove"]:hover {
     background: #ff4d50;
     color: #fff;
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+th {
+    text-align: left;
+    padding: 0.6rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid var(--accent);
+}
+td {
+    text-align: left;
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+tr:hover td {
+    background: var(--surface-2);
+}
+td a {
+    margin-right: 0.75rem;
+    text-decoration: none;
+}
+td a:hover {
+    text-decoration: underline;
+}
+td a[href$="/delete"] {
+    color: var(--danger);
+}
+td:first-child, td:last-child {
+    white-space: nowrap;
+}
+main ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+main ul li {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 0.6rem 0.85rem;
+    margin-bottom: 0.5rem;
+}
+main ul.flashes li {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
