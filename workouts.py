@@ -1,6 +1,12 @@
 import db
 
 
+CATEGORY_NAMES = """(SELECT group_concat(categories.name, ', ')
+                     FROM categories, workout_categories
+                     WHERE categories.id = workout_categories.category_id
+                     AND workout_categories.workout_id = workouts.id)"""
+
+
 def add_workout(user_id, date, workout_type, duration, notes):
     sql = """INSERT INTO workouts (user_id, date, type, duration, notes)
              VALUES (?, ?, ?, ?, ?)"""
@@ -9,7 +15,8 @@ def add_workout(user_id, date, workout_type, duration, notes):
 
 
 def get_workouts(user_id):
-    sql = "SELECT * FROM workouts WHERE user_id = ? ORDER BY date DESC"
+    sql = ("SELECT workouts.*, " + CATEGORY_NAMES + " AS categories "
+           "FROM workouts WHERE user_id = ? ORDER BY date DESC")
     return db.query(sql, [user_id])
 
 
@@ -31,9 +38,9 @@ def remove_workout(workout_id):
 
 
 def find_workouts(user_id, search_word):
-    sql = """SELECT * FROM workouts
-             WHERE user_id = ? AND (type LIKE ? OR notes LIKE ?)
-             ORDER BY date DESC"""
+    sql = ("SELECT workouts.*, " + CATEGORY_NAMES + " AS categories "
+           "FROM workouts WHERE user_id = ? AND (type LIKE ? OR notes LIKE ?) "
+           "ORDER BY date DESC")
     like = "%" + search_word + "%"
     return db.query(sql, [user_id, like, like])
 
