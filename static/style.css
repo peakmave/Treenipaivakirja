@@ -287,3 +287,66 @@ main ul.flashes li {
     padding: 0;
     margin: 0;
 }
+.chip {
+    display: inline-block;
+    margin: 0 0.25rem 0.25rem 0;
+    padding: 0.1rem 0.65rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent-light);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+main li .chip {
+    margin: 0 0 0 0.5rem;
+}
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+}
+.stat {
+    flex: 1 1 140px;
+    padding: 1rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-bottom: 3px solid var(--accent);
+    border-radius: 6px;
+    text-align: center;
+}
+.stat-number {
+    display: block;
+    font-family: Impact, "Arial Narrow Bold", "Arial Narrow", sans-serif;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: #fff;
+}
+.stat-label {
+    display: block;
+    margin-top: 0.4rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.hero {
+    padding: 2rem 1rem;
+    text-align: center;
+}
+.hero h2 {
+    border-left: none;
+    padding-left: 0;
+    font-size: 2.6rem;
+    line-height: 1.1;
+}
+.hero p {
+    max-width: 34rem;
+    margin: 0 auto 1.25rem;
+    color: var(--muted);
+}
+.hero .button {
+    margin: 0.25rem;
+}
