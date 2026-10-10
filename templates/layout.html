@@ -11,7 +11,8 @@
         <nav>
             {% if session.user_id %}
                 <span>Kirjautuneena: {{ session.username }}</span>
-                <a href="{{ url_for('show_workouts') }}">Treenit</a>
+                <a href="{{ url_for('index') }}">Etusivu</a>
+                <a href="{{ url_for('show_workouts') }}">Omat treenit</a>
                 <a href="{{ url_for('show_users') }}">Käyttäjät</a>
                 <a href="{{ url_for('logout') }}">Kirjaudu ulos</a>
             {% else %}
