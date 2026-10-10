@@ -71,3 +71,11 @@ def get_user_stats(user_id):
              FROM workouts
              WHERE user_id = ?"""
     return db.query(sql, [user_id])[0]
+
+
+def get_latest_workouts(limit):
+    sql = ("SELECT workouts.id, workouts.date, workouts.type, workouts.user_id, "
+           "users.username, " + CATEGORY_NAMES + " AS categories "
+           "FROM workouts, users WHERE workouts.user_id = users.id "
+           "ORDER BY workouts.id DESC LIMIT ?")
+    return db.query(sql, [limit])
