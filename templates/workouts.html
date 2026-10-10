@@ -6,7 +6,7 @@
         <input type="text" name="q" placeholder="Hae lajilla tai muistiinpanolla..." value="{{ query }}">
         <button type="submit">Hae</button>
     </form>
-    <p><a href="{{ url_for('new_workout') }}">+ Lisää uusi treeni</a></p>
+    <p><a class="button" href="{{ url_for('new_workout') }}">+ Lisää uusi treeni</a></p>
     {% if workouts|length == 0 %}
         <p>Ei treenejä vielä.</p>
     {% else %}
