@@ -63,7 +63,7 @@ def validate_workout(date, workout_type, duration, notes, category_ids):
         error = "Päivämäärän pitää olla muotoa VVVV-KK-PP."
     elif len(workout_type) > 50:
         error = "Lajin nimi on liian pitkä."
-    elif duration and (not duration.isdigit() or int(duration) > 1000):
+    elif duration and not (duration.isascii() and duration.isdigit() and int(duration) <= 1000):
         error = "Kesto pitää olla kokonaisluku 0-1000 minuuttia."
     elif len(notes) > 1000:
         error = "Muistiinpanot ovat liian pitkät."
