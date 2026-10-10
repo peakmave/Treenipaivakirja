@@ -3,7 +3,7 @@ import db
 
 def add_comment(workout_id, user_id, comment):
     sql = """INSERT INTO comments (workout_id, user_id, comment, created_at)
-             VALUES (?, ?, ?, datetime('now'))"""
+             VALUES (?, ?, ?, datetime('now', 'localtime'))"""
     db.execute(sql, [workout_id, user_id, comment])
 
 
