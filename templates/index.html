@@ -1,4 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-    <p>Tervetuloa Treenipäiväkirjaan! Kirjaudu sisään tai luo tunnus aloittaaksesi.</p>
+    {% if session.user_id %}
+        <h2>Viimeisimmät treenit</h2>
+        {% if workouts|length == 0 %}
+            <p>Ei vielä treenejä.</p>
+        {% else %}
+            <table>
+                <tr>
+                    <th>Päivämäärä</th>
+                    <th>Käyttäjä</th>
+                    <th>Laji</th>
+                    <th>Luokat</th>
+                </tr>
+                {% for workout in workouts %}
+                <tr>
+                    <td><a href="{{ url_for('show_workout', workout_id=workout.id) }}">{{ workout.date }}</a></td>
+                    <td><a href="{{ url_for('show_user', user_id=workout.user_id) }}">{{ workout.username }}</a></td>
+                    <td>{{ workout.type }}</td>
+                    <td>{{ workout.categories or "-" }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% else %}
+        <p>Tervetuloa Treenipäiväkirjaan! Kirjaudu sisään tai luo tunnus aloittaaksesi.</p>
+    {% endif %}
 {% endblock %}

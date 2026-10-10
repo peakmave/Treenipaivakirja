@@ -84,9 +84,10 @@ def render_workout_form(workout, form, selected):
 
 @app.route("/")
 def index():
-    if "user_id" in session:
-        return redirect("/workouts")
-    return render_template("index.html")
+    if "user_id" not in session:
+        return render_template("index.html")
+
+    return render_template("index.html", workouts=workouts.get_latest_workouts(10))
 
 
 @app.route("/register", methods=["GET", "POST"])
