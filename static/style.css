@@ -121,3 +121,115 @@ main h3 {
     list-style: none;
     margin: 0 0 1rem;
 }
+form label {
+    display: block;
+    margin-bottom: 0.9rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+form input, form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.3rem;
+    padding: 0.55rem 0.7rem;
+}
+input, textarea, select {
+    background: #0f1113;
+    color: var(--text);
+    border: 1px solid #3a3e45;
+    border-radius: 4px;
+    font: inherit;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.25);
+}
+input::placeholder, textarea::placeholder {
+    color: #6b7076;
+}
+textarea {
+    min-height: 6rem;
+    resize: vertical;
+}
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 0 0 1rem;
+    padding: 0.6rem 1rem;
+}
+legend {
+    color: var(--accent-light);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0 0.4rem;
+}
+form fieldset label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.35rem;
+    color: var(--text);
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+form fieldset input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    accent-color: var(--accent);
+}
+.search {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.search input {
+    flex: 1;
+    margin-top: 0;
+}
+button, .button {
+    display: inline-block;
+    background: var(--accent);
+    color: #111;
+    border: none;
+    border-radius: 4px;
+    padding: 0.55rem 1.2rem;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    cursor: pointer;
+}
+button:hover, .button:hover {
+    background: var(--accent-light);
+    color: #111;
+}
+button:active {
+    transform: translateY(1px);
+}
+.button.secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid #4a4f57;
+}
+.button.secondary:hover {
+    background: transparent;
+    color: var(--accent-light);
+    border-color: var(--accent);
+}
+button[name="remove"] {
+    background: var(--danger);
+    color: #fff;
+}
+button[name="remove"]:hover {
+    background: #ff4d50;
+    color: #fff;
+}
