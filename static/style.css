@@ -125,3 +125,9 @@ input:focus, textarea:focus {
 textarea {
     min-height: 5rem;
 }
+th {
+    background: #edf2f7;
+}
+tr:hover td {
+    background: #f7fafc;
+}
