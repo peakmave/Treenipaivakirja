@@ -1,0 +1,9 @@
+{% macro chips(categories) %}
+    {% if categories %}
+        {% for name in categories.split(", ") %}
+            <span class="chip">{{ name }}</span>
+        {% endfor %}
+    {% else %}
+        -
+    {% endif %}
+{% endmacro %}
