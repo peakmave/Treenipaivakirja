@@ -131,7 +131,7 @@ def login():
 
     session["user_id"] = user_id
     session["username"] = username
-    return redirect("/workouts")
+    return redirect("/")
 
 
 @app.route("/logout")
