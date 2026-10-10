@@ -14,6 +14,7 @@
                     <a href="{{ url_for('show_workout', workout_id=workout.id) }}">
                         {{ workout.date }} - {{ workout.type }}
                     </a>
+                    {% if workout.categories %}({{ workout.categories }}){% endif %}
                 </li>
             {% endfor %}
         </ul>
