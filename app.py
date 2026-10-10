@@ -265,6 +265,18 @@ def delete_workout(workout_id):
     return redirect("/workouts")
 
 
+@app.errorhandler(403)
+def forbidden(_error):
+    message = "Sinulla ei ole oikeutta tälle sivulle."
+    return render_template("error.html", title="Pääsy estetty", message=message), 403
+
+
+@app.errorhandler(404)
+def not_found(_error):
+    message = "Hakemaasi sivua ei löytynyt."
+    return render_template("error.html", title="Sivua ei löytynyt", message=message), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
