@@ -24,6 +24,11 @@
             </table>
         {% endif %}
     {% else %}
-        <p>Tervetuloa Treenipäiväkirjaan! Kirjaudu sisään tai luo tunnus aloittaaksesi.</p>
+        <section class="hero">
+            <h2>Kirjaa treenit. Seuraa kehitystä.</h2>
+            <p>Treenipäiväkirjaan tallennat treenisi, luokittelet ne ja näet tilastosi. Voit myös kommentoida muiden treenejä.</p>
+            <a class="button" href="{{ url_for('register') }}">Luo tunnus</a>
+            <a class="button secondary" href="{{ url_for('login') }}">Kirjaudu sisään</a>
+        </section>
     {% endif %}
 {% endblock %}
