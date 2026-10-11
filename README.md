@@ -5,14 +5,14 @@ Treenipäiväkirja on web-sovellus, jonka avulla käyttäjä voi kirjata omat tr
 Käyttäjä voi luoda tunnuksen ja kirjautua sovellukseen omilla tunnuksillaan.
 Kirjautunut käyttäjä voi lisätä uusia treenejä, joihin merkitään päivämäärä, laji (esim. voimaharjoittelu, juoksu, jooga), kesto minuutteina, vapaamuotoiset muistiinpanot sekä yksi tai useampi luokka (voimaharjoittelu, kestävyys, liikkuvuus tai muu).
 Käyttäjä näkee omat treeninsä listana, ja voi muokata tai poistaa niitä. Treenejä voi hakea hakusanalla, joka etsii osumia sekä lajin että muistiinpanojen tekstistä.
-Jokaisella käyttäjällä on oma käyttäjäsivunsa, jossa näkyvät hänen tilastonsa (treenien määrä ja yhteenlaskettu kesto) sekä kaikki hänen lisäämänsä treenit. Muiden käyttäjien sivuille ja treeneihin pääsee navigaation Käyttäjät-linkistä, ja kuka tahansa kirjautunut käyttäjä voi kirjoittaa kommentteja toisen käyttäjän treeniin.
+Jokaisella käyttäjällä on oma profiilisivunsa, jossa näkyvät hänen uniikki @-käyttäjänimensä, profiilikuvana nimen ensimmäinen kirjain, tilastot (treenien määrä ja yhteenlaskettu kesto) sekä kaikki hänen lisäämänsä treenit. Muiden käyttäjien sivuille ja treeneihin pääsee navigaation Käyttäjät-linkistä, ja kuka tahansa kirjautunut käyttäjä voi kirjoittaa kommentteja toisen käyttäjän treeniin.
 
 ## Keskeiset toiminnot
 - Käyttäjän rekisteröityminen ja kirjautuminen
 - Treenien lisääminen, muokkaaminen ja poistaminen
 - Kaikkien omien treenien näkeminen listana
 - Treenien hakeminen hakusanalla (laji tai muistiinpanot)
-- Käyttäjäsivut, jotka näyttävät käyttäjän tilastot ja hänen lisäämänsä treenit
+- Käyttäjäprofiilit: uniikki @-käyttäjänimi, profiilikuvana nimen ensimmäinen kirjain sekä käyttäjän tilastot ja treenit
 - Treenille voi valita yhden tai useamman luokan (esim. voimaharjoittelu, kestävyys)
 - Käyttäjä voi kommentoida toisen käyttäjän treeniä
 - Etusivu, jolla näkyvät kaikkien käyttäjien viimeisimmät treenit
@@ -54,7 +54,7 @@ Vaatimukset: Python 3, `pip` ja `sqlite3`-komentorivityökalu. Debian- ja Ubuntu
 7. Avaa selaimessa osoite [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 8. Kokeile sovellusta selaimessa:
-   - Luo tunnus "Luo tunnus" -linkistä ja kirjaudu sisään.
+   - Luo tunnus "Luo tunnus" -linkistä ja kirjaudu sisään. Käyttäjänimi on 3-30 merkkiä (a-z, 0-9 ja alaviiva), sen pitää olla uniikki kirjainkoosta riippumatta, ja se näkyy muille muodossa @nimi.
    - Lisää treeni ("Lisää uusi treeni") ja valitse sille yksi tai useampi luokka. Luokat (Voimaharjoittelu, Kestävyys, Liikkuvuus ja Muu) luodaan tietokantaan `schema.sql`-tiedostosta.
    - Kokeile treenin muokkausta, poistoa (poisto kysyy vahvistuksen erillisellä sivulla) ja hakua.
    - Etusivulla näkyvät kaikkien käyttäjien viimeisimmät treenit.
