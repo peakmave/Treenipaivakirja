@@ -25,7 +25,10 @@
     {% else %}
         <ul>
             {% for comment in comments %}
-                <li><strong>{{ comment.username }}</strong> ({{ comment.created_at[:16] }}): {{ comment.comment }}</li>
+                <li>
+                    {{ avatar(comment.username, "small") }}
+                    <strong>@{{ comment.username }}</strong> ({{ comment.created_at[:16] }}): {{ comment.comment }}
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
