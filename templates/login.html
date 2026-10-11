@@ -4,7 +4,7 @@
     <form method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <label>Käyttäjänimi
-            <input type="text" name="username" required>
+            <input type="text" name="username" placeholder="@nimi" required>
         </label>
         <label>Salasana
             <input type="password" name="password" required>
