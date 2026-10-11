@@ -4,8 +4,9 @@
     <form method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <label>Käyttäjänimi
-            <input type="text" name="username" required>
+            <input type="text" name="username" placeholder="@nimi" maxlength="31" required>
         </label>
+        <p class="hint">3-30 merkkiä: kirjaimia (a-z), numeroita ja alaviiva. Käyttäjänimi näkyy muille muodossa @nimi.</p>
         <label>Salasana
             <input type="password" name="password" required>
         </label>
