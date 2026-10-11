@@ -97,7 +97,7 @@ def register():
         return render_template("register.html")
 
     check_csrf()
-    username = request.form["username"].strip()
+    username = request.form["username"].strip().removeprefix("@")
     password = request.form["password"]
     password2 = request.form["password2"]
 
