@@ -1,3 +1,4 @@
+import re
 import secrets
 import sqlite3
 from datetime import datetime
@@ -45,8 +46,8 @@ def validate_registration(username, password, password2):
     error = None
     if not username or not password:
         error = "Täytä kaikki kentät."
-    elif len(username) > 50:
-        error = "Käyttäjänimi on liian pitkä."
+    elif not re.fullmatch(r"[A-Za-z0-9_]{3,30}", username):
+        error = "Käyttäjänimessä saa olla 3-30 merkkiä: kirjaimia (a-z), numeroita ja alaviiva."
     elif len(password) < 4:
         error = "Salasanan pitää olla vähintään 4 merkkiä."
     elif password != password2:
