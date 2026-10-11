@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "macros.html" import chips %}
+{% from "macros.html" import avatar, chips %}
 {% block content %}
     {% if session.user_id %}
         <h2>Viimeisimmät treenit</h2>
@@ -16,7 +16,12 @@
                 {% for workout in workouts %}
                 <tr>
                     <td><a href="{{ url_for('show_workout', workout_id=workout.id) }}">{{ workout.date }}</a></td>
-                    <td><a href="{{ url_for('show_user', user_id=workout.user_id) }}">{{ workout.username }}</a></td>
+                    <td>
+                        <a class="user-link" href="{{ url_for('show_user', user_id=workout.user_id) }}">
+                            {{ avatar(workout.username, "small") }}
+                            @{{ workout.username }}
+                        </a>
+                    </td>
                     <td>{{ workout.type }}</td>
                     <td>{{ chips(workout.categories) }}</td>
                 </tr>
