@@ -7,3 +7,7 @@
         -
     {% endif %}
 {% endmacro %}
+
+{% macro avatar(username, size="small") %}
+    <span class="avatar avatar-{{ size }}">{{ username[0]|upper }}</span>
+{% endmacro %}
