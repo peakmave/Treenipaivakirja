@@ -122,7 +122,7 @@ def login():
         return render_template("login.html")
 
     check_csrf()
-    username = request.form["username"]
+    username = request.form["username"].strip().removeprefix("@")
     password = request.form["password"]
     user_id = users.check_login(username, password)
 
@@ -131,7 +131,7 @@ def login():
         return redirect("/login")
 
     session["user_id"] = user_id
-    session["username"] = username
+    session["username"] = users.get_user(user_id)["username"]
     return redirect("/")
 
 
