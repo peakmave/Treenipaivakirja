@@ -39,21 +39,19 @@ Vaatimukset: Python 3, `pip` ja `sqlite3`-komentorivityökalu. Debian- ja Ubuntu
    pip install flask
    ```
 
-4. Luo tiedosto `config.py`, jossa on sovelluksen salainen avain:
-
-5. Luo tietokanta `schema.sql`-tiedoston perusteella:
+4. Luo tietokanta `schema.sql`-tiedoston perusteella:
    ```
    sqlite3 database.db < schema.sql
    ```
 
-6. Käynnistä sovellus:
+5. Käynnistä sovellus:
    ```
    flask run
    ```
 
-7. Avaa selaimessa osoite [http://127.0.0.1:5000](http://127.0.0.1:5000)
+6. Avaa selaimessa osoite [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-8. Kokeile sovellusta selaimessa:
+7. Kokeile sovellusta selaimessa:
    - Luo tunnus "Luo tunnus" -linkistä ja kirjaudu sisään. Käyttäjänimi on 3-30 merkkiä (a-z, 0-9 ja alaviiva), sen pitää olla uniikki kirjainkoosta riippumatta, ja se näkyy muille muodossa @nimi.
    - Lisää treeni ("Lisää uusi treeni") ja valitse sille yksi tai useampi luokka. Luokat (Voimaharjoittelu, Kestävyys, Liikkuvuus ja Muu) luodaan tietokantaan `schema.sql`-tiedostosta.
    - Kokeile treenin muokkausta, poistoa (poisto kysyy vahvistuksen erillisellä sivulla) ja hakua.
@@ -61,4 +59,4 @@ Vaatimukset: Python 3, `pip` ja `sqlite3`-komentorivityökalu. Debian- ja Ubuntu
    - Kokeile virheellisiä syötteitä (esim. liian pitkä kesto): lomake näyttää virheilmoituksen ja säilyttää kirjoitetut tiedot.
    - Kommentointia varten tarvitaan toinen käyttäjä: luo toinen tunnus esimerkiksi incognito-ikkunassa. Lisää ensimmäisellä tunnuksella treeni, kirjaudu toisella tunnuksella, avaa navigaation Käyttäjät-linkistä ensimmäisen käyttäjän sivu (siellä näkyvät tilastot ja treenit), avaa treeni ja kirjoita kommentti.
 
-**Huom:** Tiedostot `database.db` ja `config.py` eivät kuulu repositorioon (ks. `.gitignore`). Testaajan tulee luoda ne itse yllä olevien ohjeiden mukaisesti.
+**Huom:** `database.db` ei kuulu repositorioon (ks. `.gitignore`), koska se syntyy paikallisesti. Tiedosto `config.py` on mukana repositoriossa, jotta sovellus käynnistyy suoraan kloonauksen jälkeen.
